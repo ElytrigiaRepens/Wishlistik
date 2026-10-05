@@ -1,0 +1,1 @@
+"""The cutest wishlist service."""
