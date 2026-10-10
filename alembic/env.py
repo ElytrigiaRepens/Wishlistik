@@ -2,11 +2,13 @@ from alembic import context
 from sqlalchemy import Engine, engine_from_config
 from sqlalchemy.pool import NullPool
 
+from models import BaseModel
+
 
 def run_migrations_offline() -> None:
     context.configure(
         url='',
-        target_metadata=None,
+        target_metadata=BaseModel.metadata,
         sqlalchemy_module_prefix='',
         literal_binds=True,
         dialect_opts={'paramstyle': 'named'},
@@ -27,7 +29,7 @@ def run_migrations_online() -> None:
     with engine.connect() as connection:
         context.configure(
             connection=connection,
-            target_metadata=None,
+            target_metadata=BaseModel.metadata,
             sqlalchemy_module_prefix='',
             compare_type=True,
             compare_server_default=True,
